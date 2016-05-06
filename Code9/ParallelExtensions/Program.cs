@@ -12,7 +12,7 @@ namespace ParallelExtensions
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            FileSystemTraverse.ProcessDirectory(@"C:\Program Files (x86)");
+            FileSystemTraverse.ProcessDirectory(@"C:\Users\user\.nuget");
 
             sw.Stop();
             Console.WriteLine($"FileSystemTraverse execution: {sw.ElapsedMilliseconds}[ms]");
