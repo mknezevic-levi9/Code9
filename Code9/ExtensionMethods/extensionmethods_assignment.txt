@@ -1,0 +1,7 @@
+﻿Since Dictionary<TKey, TValue> class will throw exception if adding of the same key is tried, 
+create extension for Dictionary<TKey, TValue>() with signature bool AddIfNotExists(TKey, TValue) 
+which will perform gracefull adding of element:
+	- check if element with same key exists in dictionary and add only if it does not
+	- return value should indicate success of operation (true if element is added)
+
+Extension method should reside in separate class containing Dictionary<TKey, TValue>() extension methods. 

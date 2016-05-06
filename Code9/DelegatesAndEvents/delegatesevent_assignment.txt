@@ -1,0 +1,7 @@
+﻿Modify Customer class so that class receives custom validation delegate (which is called internally in PerformCustomValidation() method).
+Custom validation should consist of checking string properties for length (maximum length is 20),
+and age should be in range (14 - 100).
+
+Add ValidationCompletedDelegate delegate and event OnValidationCompleted which should be raised when custom validation is completed.
+
+Add event handler for OnValidationCompleted in Program.Main which writes validation result to console. 

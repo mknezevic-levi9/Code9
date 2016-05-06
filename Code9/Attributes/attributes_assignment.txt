@@ -1,0 +1,4 @@
+﻿Create an attribute RangeCheck used for validating range of integer variables. 
+Attribute should have minimum and maximum values assigned.
+
+Apply RangeCheck attribute on Customer.Age property and create validation logic.

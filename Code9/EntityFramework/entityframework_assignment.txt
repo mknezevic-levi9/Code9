@@ -1,0 +1,3 @@
+﻿Add entity Bicycle to project and BikeShopContext and write code which performs basic CRUD operations over Bicycle entity. 
+
+Establish one-to-many relationship between Customer and Bicycle and implement adding instances of Bicycle to Customer. 

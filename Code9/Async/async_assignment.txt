@@ -1,0 +1,5 @@
+﻿Add asynchronous overload of WebScrapper.GetPageContent() method. 
+Method should be asynchronous (awaitable), and should use async overload of WebClient.DownloadStringTaskAsync(string url) overload.  
+
+Demonstration should invoke async method, do some work in the foreground (Console.WriteLine() should be enough),
+and task should be awaited and result written to console.

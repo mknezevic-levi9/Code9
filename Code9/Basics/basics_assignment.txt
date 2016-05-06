@@ -1,0 +1,9 @@
+﻿Create class Bicycle and associate it with Customer. Customer can have many bicycles. 
+Bicycle should have following properties:
+	- Manufacturer (string)
+	- Type (string)
+	- Year (int)
+
+Add expression which calculates number of bicycles that customer has. 
+
+Write an expression which creates and initializes customer having two bicycles. 

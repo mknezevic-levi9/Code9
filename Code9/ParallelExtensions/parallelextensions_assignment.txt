@@ -1,0 +1,1 @@
+﻿Improve performance of FileSystemTraverse class by utilizing parallel extensions. 
