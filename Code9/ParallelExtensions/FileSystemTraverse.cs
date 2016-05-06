@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace ParallelExtensions
 {
@@ -26,10 +27,11 @@ namespace ParallelExtensions
 
             if (fileEntries != null)
             {
-                foreach (string fileName in fileEntries)
-                {
-                    ProcessFile(fileName);
-                }
+                Parallel.ForEach(fileEntries, f => ProcessFile(f));
+                //foreach (string fileName in fileEntries)
+                //{
+                //    ProcessFile(fileName);
+                //}
             }
 
             // Recurse into subdirectories of this directory.

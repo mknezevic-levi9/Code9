@@ -1,4 +1,6 @@
-﻿namespace Basics
+﻿using System.Collections.Generic;
+
+namespace Basics
 {
     /// <summary>
     /// Customer.
@@ -6,6 +8,11 @@
     public class Customer
     {
         private string _name;
+
+        public Customer()
+        {
+            Bicycles = new List<Bicycle>();
+        }
 
         /// <summary>
         /// Gets or sets the first name.
@@ -43,5 +50,21 @@
         /// The full name.
         /// </value>
         public string FullName  => $"{FirstName} {LastName}";
+
+        /// <summary>
+        /// Gets or sets the bicycles.
+        /// </summary>
+        /// <value>
+        /// The bicycles.
+        /// </value>
+        public List<Bicycle> Bicycles { get; set; }
+
+        /// <summary>
+        /// Gets the bicycles count.
+        /// </summary>
+        /// <value>
+        /// The bicycles count.
+        /// </value>
+        public int BicyclesCount => Bicycles.Count;
     }
 }

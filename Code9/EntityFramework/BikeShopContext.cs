@@ -11,6 +11,7 @@ namespace EntityFramework
             //Database.SetInitializer<BikeShopContext>(new DropCreateDatabaseAlways<BikeShopContext>());
         }
 
+        public DbSet<Bicycle> Bicycles { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

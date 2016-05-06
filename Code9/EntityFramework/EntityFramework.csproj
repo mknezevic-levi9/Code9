@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bicycle.cs" />
     <Compile Include="BikeShopContext.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Program.cs" />

@@ -15,6 +15,7 @@ namespace Attributes
 
         public string FullName  => $"{FirstName} {LastName}";
 
+        [RangeCheck(MinimumValue = 14, MaximumValue = 100)]
         public int Age { get; set; }
     }
 }

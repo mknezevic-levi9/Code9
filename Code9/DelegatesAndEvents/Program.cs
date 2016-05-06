@@ -10,23 +10,54 @@ namespace DelegatesEventsAndLambdaExpressions
     {
         static void Main(string[] args)
         {
-            // delegates
-            var delegates = new DelegatesExample();
-            delegates.Run();
+            // instantiate customer and pass custom validation method
+            var customer = new Customer(PerformCustomValidation)
+            {
+                FirstName = "Petar",
+                LastName = "Petrovic",
+                Age = 20
+            };
 
-            // events
-            var events = new EventsExample();
+            // subscribe to validation completed event
+            customer.OnValidationCompleted += ValidationCompletedHandler;
 
-            // subscribe to event
-            events.OnCalculationCompleted += CalculationCompletedHandler;
-
-            // execute operation which should result in raising event
-            events.Run();
+            // invoke method which should initiate validation flow
+            customer.PerformCustomValidation(); // should output result to console
         }
 
-        protected static void CalculationCompletedHandler(int result)
+        protected static bool PerformCustomValidation(Customer customer)
         {
-            Console.WriteLine($"Calculation completed with result: {result}");
+            int maxLength = 20;
+            int minAge = 14;
+            int maxAge = 100;
+
+            if (customer == null)
+            {
+                return false;
+            }
+
+            if (customer.FirstName == null || customer.FirstName.Length > maxLength)
+            {
+                return false;
+            }
+
+            if (customer.LastName == null || customer.LastName.Length > maxLength)
+            {
+                return false;
+            }
+
+
+            if (customer.Age < minAge || customer.Age > maxAge) 
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static void ValidationCompletedHandler(bool success)
+        {
+            Console.WriteLine($"Validation result: {success}");
         }
     }
 }

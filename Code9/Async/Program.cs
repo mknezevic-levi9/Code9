@@ -13,26 +13,20 @@ namespace Async
 
         static async Task Run()
         {
-            Console.WriteLine("Please choose example:");
-            Console.WriteLine("1. Blocking");
-            Console.WriteLine("2. Non-blocking");
-            Console.Write("> ");
-            var inputKey = Console.ReadKey().KeyChar;
+            var webscrapper = new WebScrapper();
 
-            if (inputKey == '1')
-            {
-                var blockingExample = new BlockingExample();
-                blockingExample.Run();
-            }
-            else if (inputKey == '2')
-            {
-                var nonBlockingExample = new NonBlockingExample();
-                await nonBlockingExample.Run();
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice, please restart application");
-            }
+            var webScrapperTask = webscrapper.GetPageContentAsync(@"http://www.yahoo.com");
+
+            // doing some work until page is downloaded
+            Console.WriteLine("Interface is not blocked while page is downloaded in background");
+            Console.WriteLine("...");
+
+            Console.WriteLine("Now we are waiting for downloader to finish");
+            var result = await webScrapperTask;
+
+            Console.WriteLine($"Result: {result}");
+            Console.WriteLine($"DONE. Press any key to exit.");
+            Console.ReadKey();
         }
     }
 }

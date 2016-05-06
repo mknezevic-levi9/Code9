@@ -28,6 +28,19 @@ namespace Basics
                     LastName = "Petrovic"
                 }
             };
+
+
+            // assignment solution
+            var assignmentCustomer = new Customer()
+            {
+                FirstName = "Assignment",
+                LastName = "Customer",
+                Bicycles = new List<Bicycle>()
+                {
+                    new Bicycle() { Manufacturer = "Trek", BicycleType = "Road", Year = 2015 },
+                    new Bicycle() { Manufacturer = "Cannondale", BicycleType = "MTB", Year = 2015 }
+                }
+            };
         }
     }
 }

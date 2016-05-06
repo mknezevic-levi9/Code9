@@ -8,6 +8,8 @@ namespace EntityFramework
 {
     public class Customer
     {
+        private ICollection<Bicycle> _bicycles;
+
         public Customer()
         {
         }
@@ -15,5 +17,16 @@ namespace EntityFramework
         public virtual int CustomerId { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
+        public virtual ICollection<Bicycle> Bicycles
+        {
+            get
+            {
+                return _bicycles ?? (_bicycles = new HashSet<Bicycle>());
+            }
+            protected set
+            {
+                _bicycles = value;
+            }
+        }
     }
 }

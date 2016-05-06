@@ -19,11 +19,14 @@ namespace LINQ
                 new Customer() { FirstName = "John", LastName = "Smith", Age = 35 }
             };
 
-            // 1. where
-            var resultLinq = from c in customers
-                             where c.Age == 35
-                             select c;
+            ReWrittenQueries(customers);
+        }
 
+        protected static void ReWrittenQueries(List<Customer> customers)
+        {
+
+            // 1. where
+            var resultLinq = customers.Where(c => c.Age == 35).Select(c => c);
             PrintResults("Basic linq query results:", resultLinq);
 
             // 2. lambda syntax
@@ -31,36 +34,28 @@ namespace LINQ
             PrintResults("Explicit query results:", resultsExplicit);
 
             // 3. ordering
-            var orderedResult = from c in customers
-                                where c.Age < 35
-                                orderby c.Age
-                                select c;
-
+            var orderedResult = customers.Where(c => c.Age < 35).OrderBy(c => c.Age).Select(c => c);
             PrintResults("Ordered results:", orderedResult);
 
             // 4. projecting with anonymous type
-            var projectedResults = from c in customers
-                                   where c.Age < 35
-                                   orderby c.Age
-                                   select new
+            var projectedResults = customers.Where(c => c.Age < 35).OrderBy(c => c.Age).Select(c =>
+                                   new
                                    {
                                        Name = c.FullName,
                                        Age = c.Age
-                                   };
+                                   });
 
             PrintResults("Projected results:", projectedResults);
 
 
             // 5. deferred execution
-            var deferredResults = from c in customers
-                                  select c;
+            var deferredResults = customers.Select(c => c);
 
             customers.Add(new Customer() { FirstName = "Bob", LastName = "Clarkson", Age = 40 });
             PrintResults("Should contain additional member (Bob Clarkson):", deferredResults);
 
             // 6. deferred execution materialized
-            var deferredMaterialization = from c in customers
-                                          select c;
+            var deferredMaterialization = customers.Select(c => c);;
 
             var deferredResultMaterialized = deferredMaterialization.ToList();
 
@@ -68,17 +63,13 @@ namespace LINQ
 
             PrintResults("Should NOT contain additional member (Martha King):", deferredResultMaterialized);
 
-
             // 7. aggregation function (average)
-            var averageAge = (from c in customers
-                              select c).Average(c => c.Age);
+            var averageAge = customers.Select(c => c).Average(c => c.Age);
 
             PrintResults($"Average age for customers below is {averageAge}", customers);
 
-
             // 8. aggregation function (max)
-            var maximumAge = (from c in customers
-                              select c).Max(c => c.Age);
+            var maximumAge = customers.Select(c => c).Max(c => c.Age);
 
             PrintResults($"Maximum age of customers below is {maximumAge}", customers);
         }
@@ -89,5 +80,6 @@ namespace LINQ
             results.ToList().ForEach(element => Console.WriteLine(element));
             Console.WriteLine();
         }
+
     }
 }

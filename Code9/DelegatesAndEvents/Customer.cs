@@ -7,14 +7,16 @@ namespace DelegatesEventsAndLambdaExpressions
     /// </summary>
     public class Customer
     {
-        // TODO: define validation delegate
-        // TODO: define event delegate
+        public delegate bool CustomValidationDelegate(Customer customer);
+        public delegate void ValidationCompletedDelegate(bool success);
 
-        // TODO: pass validation delegate via constructor
-        // TODO: add validation finished event
+        public event ValidationCompletedDelegate OnValidationCompleted;
 
-        public Customer(/*TODO: add validation delegate*/)
+        private CustomValidationDelegate _validationDelegate;
+
+        public Customer(CustomValidationDelegate validationDelegate)
         {
+            _validationDelegate = validationDelegate;
         }
 
         public string FirstName { get; set; } 
@@ -25,12 +27,20 @@ namespace DelegatesEventsAndLambdaExpressions
 
         public int Age { get; set; }
 
+        /// <summary>
+        /// Performs the custom validation.
+        /// </summary>
         public void PerformCustomValidation()
         {
-            // TODO: invoke custom validation delegate
-            // TODO: raise event
+            if (_validationDelegate != null)
+            {
+                bool result = _validationDelegate(this);
 
-            throw new NotImplementedException();
+                if (OnValidationCompleted != null)
+                {
+                    OnValidationCompleted(result);
+                }
+            }
         }
     }
 }
